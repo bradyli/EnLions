@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雙獅緣 | 日本酒進口代理</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS 樣式區 --- */
+        :root {
+            --primary-color: #1a3c5e; 
+            --accent-color: #64b5f6;  
+            --text-color: #2c3e50;
+            --light-bg: #f0f7fa;
+            --white: #ffffff;
+            --warning: #e74c3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, .logo { font-family: 'Noto Serif TC', serif; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- 視窗通用 CSS (年齡確認 & 即將推出) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .modal-content h2 { color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem; }
+        .modal-content p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .warning-text { color: var(--warning); font-weight: bold; font-size: 0.9rem !important; }
+        .modal-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(100, 181, 246, 0.4);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover { background: #4ba3e3; transform: translateY(-2px); }
+        .btn-secondary { background: #bdc3c7; box-shadow: none; color: #333; }
+        .btn-secondary:hover { background: #95a5a6; color: #fff; }
+
+        /* --- 網站主要樣式 --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary-color);
+            padding: 0.8rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--accent-color);
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 1rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary-color); }
+
+        /* --- 主視覺區 (Hero) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 60, 94, 0.4), rgba(26, 60, 94, 0.2)), url('images/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 20px;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 700px; font-weight: 300; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+
+        section { padding: 100px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+        .section-title .line { width: 80px; height: 3px; background: var(--accent-color); margin: 0 auto; }
+
+        .about-content { display: flex; flex-wrap: wrap; align-items: center; gap: 50px; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; }
+        .about-image img { width: 100%; border-radius: 4px; box-shadow: 10px 10px 0px var(--accent-color); object-fit: cover; max-height: 400px; }
+
+        #services { background: var(--light-bg); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .service-card { background: #fff; padding: 40px 30px; text-align: center; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid transparent; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 4px solid var(--accent-color); }
+        .service-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 25px; opacity: 0.8; }
+        .service-card h3 { margin-bottom: 15px; color: var(--primary-color); font-size: 1.4rem;}
+
+        .contact-info { text-align: center; max-width: 800px; margin: 0 auto; }
+        .contact-item { margin-bottom: 20px; font-size: 1.1rem; }
+        .contact-item i { color: var(--accent-color); margin-right: 10px; }
+
+        footer { background: var(--primary-color); color: #fff; text-align: center; padding: 30px; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { position: absolute; right: 0; top: 80px; background: #fff; flex-direction: column; width: 100%; display: none; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); text-align: center; }
+            .nav-links li { margin: 15px 0; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+            .about-image img { box-shadow: 5px 5px 0px var(--accent-color); }
+            .modal-buttons { flex-direction: column; }
+            .btn-secondary { order: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ageModal" class="modal-overlay">
+        <div class="modal-content" id="modalContent">
+            <h2>年齡確認</h2>
+            <p>歡迎光臨雙獅緣。<br>本網站內容涉及酒類資訊。</p>
+            <p class="warning-text"><i class="fas fa-exclamation-triangle"></i> 依法規定，未滿十八歲請勿飲酒。</p>
+            <p>請問您是否已年滿 18 歲？</p>
+            <div class="modal-buttons">
+                <button id="btnYes" class="btn">是，我已滿 18 歲</button>
+                <button id="btnNo" class="btn btn-secondary">否，我未滿 18 歲</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="comingSoonModal" class="modal-overlay" style="display: none; background: rgba(0,0,0,0.8);">
+        <div class="modal-content">
+            <i class="fas fa-glass-cheers" style="font-size: 4rem; color: var(--accent-color); margin-bottom: 20px;"></i>
+            <h2>即將推出</h2>
+            <p>我們正在整理最優質的銘柄清單。<br>敬請期待！</p>
+            <button id="btnCloseComingSoon" class="btn">知道了</button>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="雙獅緣 Logo">
+            雙獅緣
+        </div>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#services">進口業務</a></li>
+                <li><a href="#contact">聯絡諮詢</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>一滴入魂，<span>緣</span>結八方</h1>
+        <p>專注日本清酒代理進口，為您的餐桌帶來最純粹的感動。</p>
+        <a href="#" id="btnExplore" class="btn">探索銘柄</a>
+    </section>
+
+    <section id="about">
+        <div class="section-title">
+            <h2>職人精神，嚴選把關</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="images/about.png" alt="日本酒傳統工藝">
+            </div>
+            <div class="about-text">
+                <h3>連結日本酒造與台灣的橋樑</h3>
+                <p>「雙獅緣」致力於發掘日本各地隱藏的珍珠——那些堅持傳統工藝、產量稀少卻品質卓越的地酒（Jizake）。</p>
+                <br>
+                <p>我們不只是進口商，更是文化的傳遞者。從純米大吟釀的細緻優雅，到生原酒的奔放鮮活，我們親自走訪酒造，嚴格控制冷鏈運輸，確保每一瓶交到您手上的酒，都如同剛在酒造裝瓶般新鮮清爽。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-title">
+            <h2>專業服務</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-wine-glass-alt"></i>
+                <h3>銘柄代理</h3>
+                <p>獨家代理日本特色酒造品牌，提供多樣化的清酒選擇，滿足不同客群的味蕾。</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-truck-moving"></i>
+                <h3>冷鏈配送</h3>
+                <p>全程低溫冷鏈倉儲與配送，完美鎖住日本酒纖細的香氣與口感。</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-store-alt"></i>
+                <h3>餐飲通路合作</h3>
+                <p>為餐廳、居酒屋設計專屬酒單，並提供專業侍酒建議與教育訓練。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>聯絡諮詢</h2>
+            <div class="line"></div>
+        </div>
+        <div class="contact-info">
+            <p style="margin-bottom: 30px;">無論是採購需求、經銷合作，或是想了解更多酒款資訊，歡迎隨時聯繫我們。</p>
+            <div class="contact-item"><i class="fas fa-phone-alt"></i> </div>
+            <div class="contact-item"><i class="fas fa-envelope"></i> enlions.sake@gmail.com</div>
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> 台北市中正區衡陽路10號7樓</div>
+            <a href="mailto:enlions.sake@gmail.com" class="btn" style="margin-top: 20px;">發送郵件</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 雙獅緣有限公司 En Lions Edge Co., Ltd. <br>飲酒過量，有害健康 | 未滿十八歲請勿飲酒</p>
+    </footer>
+
+    <script>
+        // --- 變數宣告 ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        // 年齡確認相關
+        const ageModal = document.getElementById('ageModal');
+        const modalContent = document.getElementById('modalContent');
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+
+        // ★ 新增：即將推出視窗相關
+        const btnExplore = document.getElementById('btnExplore');
+        const comingSoonModal = document.getElementById('comingSoonModal');
+        const btnCloseComingSoon = document.getElementById('btnCloseComingSoon');
+
+        // --- 1. 漢堡選單 ---
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => { navLinks.classList.remove('active'); });
+        });
+
+        // --- 2. 年齡確認邏輯 ---
+        if (sessionStorage.getItem('isAdult') === 'true') {
+            ageModal.style.display = 'none'; 
+        }
+
+        btnYes.addEventListener('click', function() {
+            ageModal.style.display = 'none'; 
+            sessionStorage.setItem('isAdult', 'true');
+        });
+
+        btnNo.addEventListener('click', function() {
+            modalContent.innerHTML = `
+                <i class="fas fa-ban" style="font-size: 4rem; color: var(--warning); margin-bottom: 20px;"></i>
+                <h2>抱歉，您無法進入</h2>
+                <p>根據相關法規，本網站僅供 18 歲以上人士瀏覽。</p>
+            `;
+        });
+
+        // --- 3. ★ 新增：探索銘柄按鈕邏輯 ★ ---
+        btnExplore.addEventListener('click', function(e) {
+            e.preventDefault(); // 阻止網頁跳轉
+            comingSoonModal.style.display = 'flex'; // 顯示視窗
+        });
+
+        // 關閉「即將推出」視窗
+        btnCloseComingSoon.addEventListener('click', function() {
+            comingSoonModal.style.display = 'none';
+        });
+
+        // 點擊視窗外部也可以關閉 (優化體驗)
+        comingSoonModal.addEventListener('click', function(e) {
+            if (e.target === comingSoonModal) {
+                comingSoonModal.style.display = 'none';
+            }
+        });
+
+    </script>
+</body>
+</html>
