@@ -1,10 +1,164 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head>
+<head<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>雙獅緣 | 頂級日本酒進口代理 | 專業清酒經銷批發</title>
+    <meta name="description" content="雙獅緣專注於日本清酒代理進口，提供純米大吟釀、地酒、生原酒等頂級酒款。致力於連結日本酒造與台灣餐飲通路，提供專業冷鏈配送與侍酒服務。">
+    <meta name="keywords" content="雙獅緣, 日本酒, 清酒, Sake, 純米大吟釀, 日本酒代理, 清酒進口商, 台北酒商, 地酒, 餐飲批發">
+    <meta name="author" content="雙獅緣有限公司">
+    <meta name="robots" content="index, follow"> <meta property="og:title" content="雙獅緣 | 日本酒進口代理">
+    <meta property="og:description" content="一滴入魂，緣結八方。專注日本清酒代理，為您的餐桌帶來最純粹的感動。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bradyli.github.io/EnLions/"> <meta property="og:image" content="images/hero-bg.png"> <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://bradyli.github.io/EnLions/",
+      "@type": "WholesaleStore",
+      "name": "雙獅緣有限公司",
+      "image": "images/logo.png",
+      "description": "專業日本酒進口代理商，提供頂級清酒、純米大吟釀批發與零售服務。",
+      "email": "enlions.sake@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "衡陽路10號7樓",
+        "addressLocality": "中正區",
+        "addressRegion": "台北市",
+        "postalCode": "100",
+        "addressCountry": "TW"
+      },
+      "priceRange": "$$$",
+      "openingHours": "Mo-Fr 09:00-18:00"
+    }
+    </script>
+
+    <style>
+        /* --- CSS 樣式區 (保持原本的不變) --- */
+        :root {
+            --primary-color: #1a3c5e; 
+            --accent-color: #64b5f6;  
+            --text-color: #2c3e50;
+            --light-bg: #f0f7fa;
+            --white: #ffffff;
+            --warning: #e74c3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, .logo { font-family: 'Noto Serif TC', serif; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- 視窗通用 CSS --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 9999;
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--white); padding: 2.5rem; border-radius: 12px;
+            text-align: center; max-width: 500px; width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 5px solid var(--accent-color);
+        }
+
+        .modal-content h2 { color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem; }
+        .modal-content p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .warning-text { color: var(--warning); font-weight: bold; font-size: 0.9rem !important; }
+        .modal-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+        
+        .btn {
+            display: inline-block; background: var(--accent-color); color: #fff;
+            padding: 12px 35px; border: none; border-radius: 50px; font-weight: bold;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(100, 181, 246, 0.4);
+            cursor: pointer; font-size: 1rem;
+        }
+        .btn:hover { background: #4ba3e3; transform: translateY(-2px); }
+        .btn-secondary { background: #bdc3c7; box-shadow: none; color: #333; }
+        .btn-secondary:hover { background: #95a5a6; color: #fff; }
+
+        /* --- 網站主要樣式 --- */
+        header {
+            background: rgba(255, 255, 255, 0.95); color: var(--primary-color);
+            padding: 0.8rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 3px solid var(--accent-color);
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem; font-weight: 700; color: var(--primary-color);
+            letter-spacing: 2px; display: flex; align-items: center; gap: 12px; height: 100%;
+        }
+
+        .logo img { height: 45px; width: auto; max-width: 150px; object-fit: contain; }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 1rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary-color); }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 60, 94, 0.4), rgba(26, 60, 94, 0.2)), url('images/hero-bg.png');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: #fff; padding: 0 20px;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 700px; font-weight: 300; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+
+        section { padding: 100px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+        .section-title .line { width: 80px; height: 3px; background: var(--accent-color); margin: 0 auto; }
+
+        .about-content { display: flex; flex-wrap: wrap; align-items: center; gap: 50px; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; }
+        .about-image img { width: 100%; border-radius: 4px; box-shadow: 10px 10px 0px var(--accent-color); object-fit: cover; max-height: 400px; }
+
+        #services { background: var(--light-bg); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .service-card { background: #fff; padding: 40px 30px; text-align: center; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid transparent; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 4px solid var(--accent-color); }
+        .service-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 25px; opacity: 0.8; }
+        .service-card h3 { margin-bottom: 15px; color: var(--primary-color); font-size: 1.4rem;}
+
+        .contact-info { text-align: center; max-width: 800px; margin: 0 auto; }
+        .contact-item { margin-bottom: 20px; font-size: 1.1rem; }
+        .contact-item i { color: var(--accent-color); margin-right: 10px; }
+
+        footer { background: var(--primary-color); color: #fff; text-align: center; padding: 30px; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { position: absolute; right: 0; top: 80px; background: #fff; flex-direction: column; width: 100%; display: none; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); text-align: center; }
+            .nav-links li { margin: 15px 0; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+            .about-image img { box-shadow: 5px 5px 0px var(--accent-color); }
+            .modal-buttons { flex-direction: column; }
+            .btn-secondary { order: 1; }
+        }
+    </style>
+</head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>雙獅緣 | 日本酒進口代理</title>
-	<link rel="icon" type="image/x-icon" href="images/logo_ico.ico">
+	<link rel="icon" type="image/png" href="images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -220,7 +374,7 @@
         </div>
         <div class="about-content">
             <div class="about-image">
-                <img src="images/about.png" alt="日本酒傳統工藝">
+                <img src="images/about.png" alt="雙獅緣日本酒職人倒酒特寫-純米大吟釀與清酒文化" loading="lazy">
             </div>
             <div class="about-text">
                 <h3>連結日本酒造與台灣的橋樑</h3>
