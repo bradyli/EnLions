@@ -27,6 +27,23 @@
         h1, h2, h3 { font-family: 'Noto Serif TC', serif; }
         a { text-decoration: none; color: inherit; }
 
+        /* ===== 通用按鈕 ===== */
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(100, 181, 246, 0.4);
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .btn:hover { background: #4ba3e3; transform: translateY(-2px); }
+
         /* ===== 返回按鈕 ===== */
         .brewery-back-btn {
             position: fixed;
@@ -460,9 +477,48 @@
             .product-specs { grid-template-columns: 1fr; }
             .brewery-info-strip { grid-template-columns: 1fr 1fr; }
         }
+        /* ===== 年齡確認 Modal ===== */
+        .age-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .age-modal-content {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 5px solid var(--accent-color);
+        }
+        .age-modal-content h2 { color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem; font-family: 'Noto Serif TC', serif; }
+        .age-modal-content p { margin-bottom: 1.5rem; font-size: 1.1rem; color: #2c3e50; }
+        .age-warning { color: #e74c3c; font-weight: bold; font-size: 0.9rem; }
+        .age-modal-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+        @media (max-width: 768px) { .age-modal-buttons { flex-direction: column; } }
     </style>
 </head>
 <body>
+
+    <div id="ageModal" class="age-modal-overlay" style="display:none;">
+        <div class="age-modal-content" id="ageModalContent">
+            <h2>年齡確認</h2>
+            <p>歡迎光臨雙獅緣。<br>本頁面內容涉及酒類資訊。</p>
+            <p class="age-warning"><i class="fas fa-exclamation-triangle"></i> 依法規定，未滿十八歲請勿飲酒。</p>
+            <p>請問您是否已年滿 18 歲？</p>
+            <div class="age-modal-buttons">
+                <button id="ageBtnYes" class="btn">是，我已滿 18 歲</button>
+                <button id="ageBtnNo" class="btn" style="background:transparent;box-shadow:none;border:2px solid #bdc3c7;color:#333;">否，我未滿 18 歲</button>
+            </div>
+        </div>
+    </div>
 
     <a class="brewery-back-btn" href="index.html">
         <i class="fas fa-arrow-left"></i> 返回首頁
@@ -572,10 +628,28 @@
     </div>
 
     <script>
-        // 年齡驗證：未確認者導回首頁
+        // 年齡驗證
+        const ageModal = document.getElementById('ageModal');
+        const ageModalContent = document.getElementById('ageModalContent');
+        const ageBtnYes = document.getElementById('ageBtnYes');
+        const ageBtnNo = document.getElementById('ageBtnNo');
+
         if (sessionStorage.getItem('isAdult') !== 'true') {
-            location.href = 'index.html';
+            ageModal.style.display = 'flex';
         }
+
+        ageBtnYes.addEventListener('click', () => {
+            sessionStorage.setItem('isAdult', 'true');
+            ageModal.style.display = 'none';
+        });
+
+        ageBtnNo.addEventListener('click', () => {
+            ageModalContent.innerHTML = `
+                <i class="fas fa-ban" style="font-size:4rem;color:#e74c3c;margin-bottom:20px;"></i>
+                <h2>抱歉，您無法進入</h2>
+                <p>根據相關法規，本網站僅供 18 歲以上人士瀏覽。</p>
+            `;
+        });
 
         const products = {
             'sake-mirai': {
